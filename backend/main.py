@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 import logging
 from backend.config import settings
 from backend.database import engine, Base
-from backend.routers import threats, alerts, analysis
+from backend.routers import threats, alerts, analysis, gamification
 
 # Configure logging
 logging.basicConfig(
@@ -45,7 +45,7 @@ app.add_middleware(
 app.include_router(threats.router, prefix="/api/v1/threats", tags=["Threats"])
 app.include_router(alerts.router, prefix="/api/v1/alerts", tags=["Alerts"])
 app.include_router(analysis.router, prefix="/api/v1/analysis", tags=["Analysis"])
-
+app.include_router(gamification.router, prefix="/api/v1/gamification", tags=["Gamification"])
 
 @app.get("/")
 async def root():
